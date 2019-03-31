@@ -1,0 +1,116 @@
+
+#slider1_container {
+  position: relative; top:-32px; right: 5px; width: 100%; height: 440px; background: #fff; overflow: hidden; 
+}
+#slides {
+    cursor: move; position: absolute; left:0px; top: 40px; width: 100%; height: 400px;
+            overflow: hidden;
+}
+#thumbnavigator {
+    position: absolute; width: 100%; height: 40px; left:0px; top:400px;background:#fff;z-index:99999999999999;
+}
+#slidemove {
+    cursor: move; top:0px; left:0px;
+}
+
+#prototype {
+    POSITION: absolute; WIDTH: 20%; font-size:large; HEIGHT: 40px; TOP: 0; LEFT: 0; padding:0px; background:#fff;
+}
+#thumbnailtemplate {
+     WIDTH: 100%; HEIGHT: 36px; position:absolute; TOP: 0; LEFT: 0; line-height:23px; text-align:center;
+}
+
+@media screen and (max-width:480px) {
+    #thumbnavigator {
+    display:none;
+}
+}
+@media screen and (min-width:481px) and (max-width:640px) {
+     #thumbnavigator {
+    display:none;
+}
+}
+ .captionOrange, .captionBlack
+        {
+            color: #fff;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .captionOrange
+        {
+            background: #EB5100;
+            background-color: rgba(235, 81, 0, 0.6);
+        }
+        .captionBlack
+        {
+        	font-size:20px;
+            background: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
+        {
+        	color: #ffffff;
+        	text-decoration: none;
+        }
+        a.captionOrange:hover
+        {
+            color: #eb5100;
+            text-decoration: underline;
+            background-color: #eeeeee;
+            background-color: rgba(238, 238, 238, 0.7);
+        }
+        .bricon
+        {
+            background: url(../img/browser-icons.png);
+        }
+		
+		
+		/* jssor slider thumbnail navigator skin 14 css */
+                /*
+                .jssort14 .p            (normal)
+                .jssort14 .p:hover      (normal mouseover)
+                .jssort14 .pav          (active)
+                .jssort14 .pav:hover    (active mouseover)
+                .jssort14 .pdn          (mousedown)
+                */
+                .jssort14 .w, .jssort14 .phv .w
+                {
+                	cursor: pointer;
+                	position: absolute;
+                	WIDTH: 100%;
+                	HEIGHT: 100%;
+                	background-color: #fb3439;
+                    text-align:center;
+                    padding-top:10px;
+                }
+                .jssort14 .pdn .w, .jssort14 .pav .w, .jssort14 .p:hover .w
+                {
+                	background-color: #118438;
+                }
+                .jssort14 .c
+                {
+                    color: #ffffff;
+                    font-size:16px;
+                	background-color:#fb3439;                	
+                	transition: background-color .6s;
+                    -moz-transition: background-color .6s;
+                    -webkit-transition: background-color .6s;
+                    -o-transition: background-color .6s;
+                }
+                .jssort14 .p:hover .c, .jssort14 .phv .c, .jssort14 .pav:hover .c, .jssort14 .pav .c
+                {
+                	transition: none;
+                    -moz-transition: none;
+                    -webkit-transition: none;
+                    -o-transition: none;
+                }
+                .jssort14 .pav .c
+                {
+                	background-color:#118438;
+                }
+                .jssort14 .p:hover .c, .jssort14 .phv .c, .jssort14 .pav:hover .c
+                {
+                	background-color:#118438;
+                }

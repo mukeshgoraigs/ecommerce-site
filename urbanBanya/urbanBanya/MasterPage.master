@@ -1,0 +1,746 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Import Namespace="System.Data" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <title id="PageTitle" runat="server">This is the Default Page Title...</title>
+    <meta name="Keywords" id="PageKeywords" content="default, page, keywords" runat="server" />
+    <meta name="Description" id="PageDescription" content="This is the Default page desctription, which should be changed when the page is loaded." runat="server" />
+    <meta charset="UTF-8">
+    <script src="js/jquery-2.1.1.js"></script>
+    <link href="newSlider/breakingNews.css" rel="stylesheet" />
+    <script src="newSlider/breakingNews.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Resource style -->
+    <script src="js/modernizr.js"></script>
+    <!-- Modernizr -->
+
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <link href="css/menu.css" rel="stylesheet" />
+    <script src="js/menu.js"></script>
+    <script src="js/myjs.js"></script>
+    <link href="css/slider.css" rel="stylesheet" />
+    <link href="css/carousel.css" rel="stylesheet" />
+    <link href="urbancss/product.css" rel="stylesheet" />
+    <script src="js/urbanCart.js"></script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link type="application/opensearchdescription+xml" rel="search" href="/opensearch.xml">
+    <link rel="stylesheet" type="text/css" href="urbancss/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no">
+
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/jquery.menu-aim.js"></script>
+    <!-- menu aim -->
+    <script src="js/addSearch.js"></script>
+    <script src="js/main.js"></script>
+
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+            d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                z.set.
+                _.push(o)
+            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "//v2.zopim.com/?3k2pAwfcT4KvltJ2HKgkXjN4aXGCTPph"; z.t = +new Date; $.
+            type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+
+
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="categoryPage Desktop NA" id="bd">
+    <div class="loadwait">
+        <img src="img/loader.gif" class="loadimg" />
+
+    </div>
+    <a class="showmenu">
+        <img width="32px" height="32px" src="img/show-menu-icon.png" /></a>
+    <div class="mobilemenu">
+        <ul id="accordion" class="accordion">
+            <asp:Repeater ID="rpMobile" runat="server">
+                <ItemTemplate>
+                    <li>
+                        <div class="link"><%#Eval("categoryName") %><i class="fa fa-chevron-down"></i></div>
+                        <ul class="submenu">
+                            <asp:Repeater ID="rpChCategory" DataSource='<%# ((DataRowView)Container.DataItem).Row.GetChildRows("myrelation") %>' runat="server">
+                                <ItemTemplate>
+                                    <li><a href="Product.aspx?subid=<%# DataBinder.Eval(Container.DataItem, "[\"id\"]")%>"><%# DataBinder.Eval(Container.DataItem, "[\"subCategoryName\"]")%> </a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+        </ul>
+
+    </div>
+    <div style="width: 100%; height: 40px; position: fixed; top: 0px; left: 0px; background: #0a7979; color: #fff; z-index: 99999999; text-align: center">
+
+        <ul style="list-style-type: none; display: inline-block">
+            <li style="display: inline-block">
+                <%--<select>
+                    <option>jaipur
+                    </option>
+
+                </select>--%>
+            </li>
+            <li style="display: inline-block">
+                <%-- <div>☎&nbsp;+91 7790916339 &nbsp;&nbsp;&nbsp;✉&nbsp;cs@urbanbanya.com</div>--%>
+            </li>
+
+        </ul>
+
+
+    </div>
+    <form id="form1" runat="server">
+
+        <div class="messageBox">
+            <a class="msgbtnclose">X</a>
+            <img style="float: left" width="150px" height="40px" src="img/logo.png" /><br />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <label style="color: red" class="lblMessage"></label>
+            <br />
+
+            <br />
+            <br />
+            <br />
+            <a class="btnMessageOk">Ok</a>
+            <br />
+            <br />
+
+        </div>
+        <div class="urbanOtp">
+            <a class="otpbtnclose">X</a>
+            <img style="float: left" width="150px" height="40px" src="img/logo.png" /><br />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <input class="texbox" type="text" id="txtotp" placeholder="Your OTP" /><br />
+
+            <br />
+            <a class="btnVerifyOtp">Verify OTP</a>
+            <a class="btnResendOtp">Resend OTP</a><br />
+            <br />
+            <span class="heading">please check your mail & mobile number for OTP</span>
+        </div>
+        <div class="urbanForgetPassword">
+            <a class="forgetbtnclose">X</a>
+            <img style="float: left" width="150px" height="40px" src="img/logo.png" /><br />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <input class="texbox" type="text" id="txtEmailForget" placeholder="Enter Your Register Mail-Id" /><br />
+
+            <br />
+            <a class="btnForgetPassword">Submit</a>
+            <br />
+            <br />
+            <br />
+            <span class="heading">Please check your mail</span>
+        </div>
+        <div class="urbanLogin">
+            <a class="lbtnclose">X</a>
+            <img style="float: left" width="150px" height="40px" src="img/logo.png" /><br />
+
+
+            <input class="texbox" type="email" id="loginEmail" placeholder="Email Id" /><br />
+            <input class="texbox" type="password" id="loginPassword" placeholder="Password" /><br />
+            <br />
+            <a class="btnLogin">Login</a>
+            <a class="lbtnSignUp">Sign Up</a>
+            <a style="color: red" href="#" class="btnForget">Forget Password ?</a>
+            <fb:login-button style="height: 40px" scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+            <br />
+            <table border="0">
+                <tr>
+                    <td style="text-align: right; padding-right: 0px; border: 0px">
+                        <input style="display: block" type="checkbox" class="chkShowPassword" /></td>
+                    <td style="text-align: left; border: 0px">Show Password</td>
+                </tr>
+            </table>
+            <br />
+            <br />
+
+        </div>
+
+        <div class="urbanSignUp">
+
+            <a class="sbtnclose">X</a>
+            <img style="float: left" width="150px" height="40px" src="img/logo.png" /><br />
+
+
+            <input class="texbox" type="text" id="fname" placeholder="First Name" /><br />
+            <input class="texbox" type="email" id="email" placeholder="Email Id" /><br />
+            <input class="texbox" type="password" id="password" placeholder="Password" /><br />
+            <input class="texbox" type="text" id="mobile" placeholder="Mobile Number" /><br />
+            <br />
+
+            <a class="btnSignUp">Sign Up</a> <a class="sbtnLogin">Login</a><br />
+            <br />
+            <table border="0">
+                <tr>
+                    <td style="text-align: right; padding-right: 0px; border: 0px">
+                        <input type="checkbox" class="chktram" /></td>
+                    <td style="text-align: left; border: 0px"><a href="Termsandcondition.aspx" target="_blank">Agree terms and conditions</a></td>
+                </tr>
+            </table>
+
+            <br />
+            <%-- <span class="heading">Login <b>UrbanBanya before Check Out</b></span>--%>
+            <br />
+            <br />
+        </div>
+        <div class="urbanFacebookSignUp">
+
+            <a class="fsbtnclose">X</a>
+            <img style="float: left" width="150px" height="40px" src="img/logo.png" /><br />
+
+
+            <input class="texbox" type="text" id="facebookfname" placeholder="First Name" disabled /><br />
+            <input class="texbox" type="email" id="facebookemail" placeholder="Email Id" disabled /><br />
+            <input class="texbox" type="text" id="facebookmobile" placeholder="Mobile Number" /><br />
+            <br />
+
+            <a class="btnFacebookSignUp">Sign Up</a><br />
+            <br />
+            <table border="0">
+                <tr>
+                    <td style="text-align: right; padding-right: 0px; border: 0px">
+                        <input type="checkbox" class="chkfacebooktram" /></td>
+                    <td style="text-align: left; border: 0px"><a href="Termsandcondition.aspx" target="_blank">Agree terms and conditions</a></td>
+                </tr>
+            </table>
+
+            <br />
+            <%-- <span class="heading">Login <b>UrbanBanya before Check Out</b></span>--%>
+            <br />
+            <br />
+        </div>
+
+        <div id="fb-root" class=" fb_reset">
+            <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+                <div>
+                    <%--<iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://s-static.ak.facebook.com/connect/xd_arbiter/7tUlZKGPU61.js?version=41#channel=f34577073&amp;origin=https%3A%2F%2Fwww.zopnow.com" style="border: none;"></iframe>--%>
+                </div>
+            </div>
+            <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+                <div></div>
+            </div>
+        </div>
+        <div id="outer-wrap">
+            <div id="responsive-header" class="searchHeader jsSearchHeader">
+
+                <ul>
+                    <li><a class="nav-btn" id="sidebar-open-btn"></a></li>
+                    <li><a class="nav-btn" id="nav-open-btn"></a></li>
+
+                    <li class="search dropdown" id="search">
+                        <input type="text" id="txtproduct" class="searchInput jsSearchProduct" placeholder="Find a product" autocomplete="off" />
+                    </li>
+                    <li><a style="margin-top: 60px" href="UrbanCart.aspx" id="cart-open-btn" class="cart-full"></a></li>
+                </ul>
+            </div>
+
+            <div class="search-popup jsSearchPopup cf " role="menu" aria-labelledby="dLabel" id="searchPanel" style="display: none;">
+                <div class="backdrop"></div>
+                <img class="jsLoader" style="display: none; position: relative; left: 25%;" src="//sn.zopnow.com/css/images/loading1.gif">
+                <div class="jsResultHeader" style="margin: 5px 0 5px 10px; font-size: 15px;"></div>
+                <div class="searchItems small fright productListing jsSearchedProductContainer"></div>
+            </div>
+
+            <div id="nav">
+                <div class="logo">
+                    <a href="Default.aspx">
+                        <img src="img/logo.png" /></a>
+
+                </div>
+
+
+                <div class="userHeader">
+
+                    <ul>
+                        <!-- <li class="nomobile"><a >Home</a></li> -->
+
+                        <li class="dropdown signup"><a id="signupButton"><span>Sign Up</span></a></li>
+                        <li class="dropdown login"><a id="loginButton">Login</a></li>
+                        <li class="dropdown logout hide"><a id="logout" style="color: #f94b4f" href="Logout.aspx">Logout</a></li>
+                        <li class="dropdown account hide"><a id="userName" href="MyAccount.aspx"></a></li>
+
+                        <li class="dropdown area"><a class="js-showpincode"></a></li>
+
+
+                    </ul>
+                </div>
+                <hr color="#a8d240" size="5" />
+            </div>
+
+            <div id="canvas" class="js-close-popup"></div>
+
+
+
+
+            <div id="sidebar" style="margin-top: 155px">
+
+
+
+                <nav class="cd-dropdown" style="width: 200px">
+
+                    <ul class="cd-dropdown-content" style="width: 200px; overflow-y: auto; max-height: 450px;">
+                        <asp:Repeater ID="rpMainMenu" runat="server">
+                            <ItemTemplate>
+                                <li class="has-children">
+                                    <a href="#"><%#Eval("categoryName") %></a>
+
+                                    <ul class="cd-secondary-dropdown is-hidden">
+
+                                        <li class="has-children">
+                                            <a href="#"><%#Eval("categoryName") %></a>
+
+                                            <ul class="is-hidden">
+                                                <li class="go-back"><a href="#0"><%#Eval("categoryName") %></a></li>
+                                                <asp:Repeater ID="rpChCategory" DataSource='<%# ((DataRowView)Container.DataItem).Row.GetChildRows("myrelation") %>' runat="server">
+                                                    <ItemTemplate>
+                                                        <li><a href="Product.aspx?subid=<%# DataBinder.Eval(Container.DataItem, "[\"id\"]")%>"><%# DataBinder.Eval(Container.DataItem, "[\"subCategoryName\"]")%> </a></li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <img src="UrbanAdmin/category/medium/<%#Eval("image") %>" />
+                                        </li>
+
+                                    </ul>
+                                    <!-- .cd-secondary-dropdown -->
+                                </li>
+                                <!-- .has-children -->
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+
+
+
+                    </ul>
+                    <!-- .cd-dropdown-content -->
+                </nav>
+                <!-- .cd-dropdown -->
+
+            </div>
+            <!-- Sidebar ends -->
+
+            <div id="content" class="nonSidebar">
+                <!-- Closes in footer -->
+
+
+                <div class="" id="kitchen">
+                    <!-- Closes in footer -->
+
+                    <div style="margin-top: 75px">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+
+
+                    <div id="mycartdata">
+                        <div id="test1">
+                            <div id="test2">
+                                <div id="responsive-cart" data-hash="fa22533380d71666a4801a36bb03e098" class="is-collapsed">
+
+                                    <div class="cartControls"><a class="editCart">Edit Cart</a><a class="cclearCart">Clear</a></div>
+
+                                    <div class="cartWrapper">
+
+                                        <div class="cartInformation" style="margin-right: 166px">
+                                            <a href="#" class="btnCheckOut">
+                                                <img src="images/checkout.png" class="checkoutButton">
+                                            </a>
+                                            <p>
+                                                <strong class="large1">
+                                                    <h2>You Pay: ₹
+                                                    <asp:Label ID="lblTotalAmounts" runat="server"></asp:Label>/-</h2>
+                                                </strong>
+                                                <br>
+                                                <span class="hidden">You Save: Rs
+                                                <asp:Label ID="lblTotalSaving" runat="server"></asp:Label>/-</span><br>
+                                            </p>
+                                        </div>
+
+
+
+
+                                        <div class="cartItemContainer">
+                                            <div class="cartScrollerBtn left disabled"></div>
+                                            <div class="cartScrollerBtn right disabled"></div>
+                                            <div class="cartScrollerWrapper">
+                                                <div class="cartScroller" style="right: 0px;">
+
+                                                    <asp:Repeater ID="rpCartS" runat="server">
+                                                        <ItemTemplate>
+                                                            <div class="cartItem" data-item-id="<%#Eval("id") %>" data-var-id="<%#Eval("productid") %>" style="width: auto;">
+                                                                <div class="itemImage">
+                                                                    <img src="UrbanAdmin/product/small/<%#Eval("image") %>" alt="<strong>Playboy Play It Spicy  Deodorant</strong> 150 ml" width="320" height="320">
+                                                                </div>
+
+                                                                <div class="itemControl">
+                                                                    <a class="deleteButton"></a>
+                                                                    <a class="count"><%#Eval("quantity") %></a>
+                                                                    <a class="addButton"></a>
+                                                                </div>
+                                                                <div class="itemDescription">
+                                                                    <h4><strong><%#Eval("productName") %></strong> <%#Eval("size") %></h4>
+                                                                    <p class="price"><%#Eval("newprice") %></p>
+                                                                </div>
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Review wrapper -->
+
+
+                                    <div class="reviewWrapper">
+                                        <div class="rowGroup">
+                                            <div class="row threefourth fixed-table-wrapper">
+                                                <div class="fixed-table" style="overflow-y: auto; max-height: 200px;">
+
+                                                    <div id="test3">
+                                                        <div id="test4">
+                                                            <table class="cartTable" cellpadding="0" cellspacing="0" data-scrollable-content="">
+                                                                <colgroup width="2%"></colgroup>
+                                                                <colgroup width="1%"></colgroup>
+                                                                <colgroup width="6%"></colgroup>
+                                                                <colgroup width="25%"></colgroup>
+                                                                <colgroup width="1%"></colgroup>
+                                                                <colgroup width="15%"></colgroup>
+                                                                <colgroup width="15%"></colgroup>
+                                                                <colgroup width="20%"></colgroup>
+                                                                <colgroup width="15%"></colgroup>
+                                                                <tbody>
+
+                                                                    <tr class="cartHead">
+                                                                        <th class="rightAlign">
+                                                                            <div class="fixed-th">No.</div>
+                                                                        </th>
+                                                                        <th class="centerAlign">
+                                                                            <div class="fixed-th">&nbsp;</div>
+                                                                        </th>
+                                                                        <th class="centerAlign">
+                                                                            <div class="fixed-th">&nbsp;</div>
+                                                                        </th>
+                                                                        <th>
+                                                                            <div class="fixed-th">Name</div>
+                                                                        </th>
+                                                                        <th class="rightAlign">
+                                                                            <div class="fixed-th">&nbsp;</div>
+                                                                        </th>
+                                                                        <th class="rightAlign">
+                                                                            <div class="fixed-th">MRP</div>
+                                                                        </th>
+                                                                        <th class="rightAlign">
+                                                                            <div class="fixed-th">Discount</div>
+                                                                        </th>
+                                                                        <th class="centerAlign">
+                                                                            <div class="fixed-th">Quantity</div>
+                                                                        </th>
+                                                                        <th class="rightAlign">
+                                                                            <div class="fixed-th">You Pay</div>
+                                                                        </th>
+                                                                    </tr>
+
+
+
+
+                                                                    <asp:Repeater ID="rpCartFull" runat="server">
+                                                                        <ItemTemplate>
+                                                                            <tr class="content" data-item-id="2593" data-var-id="10003426" data-stock="">
+                                                                                <td class="rightAlign">7</td>
+                                                                                <td class="rightAlign">&nbsp;</td>
+                                                                                <td class="image">
+                                                                                    <div class="images">
+                                                                                        <img src="UrbanAdmin/product/small/<%#Eval("image") %>" alt="<strong><%#Eval("productName") %></strong> <%#Eval("size") %>" height="25">
+                                                                                        <div class="cartLargePic">
+                                                                                            <img src="UrbanAdmin/product/small/<%#Eval("image") %>" alt="<strong><%#Eval("productName") %></strong> <%#Eval("size") %>" height="140">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td><strong><%#Eval("productName") %></strong> <%#Eval("size") %></td>
+                                                                                <td class="rightAlign">&nbsp;</td>
+                                                                                <td class="rightAlign">₹ <%#Eval("price") %></td>
+                                                                                <td class="rightAlign">₹ <%#Eval("discount") %></td>
+                                                                                <td class="centerAlign inline-whitespace-fix">
+                                                                                    <a class="cdeleteButton" data-img="<%#Eval("image") %>" data-size="<%# Eval("size") %>" data-id="<%# Eval("id") %>" data-price="<%#Eval("newprice") %>" data-discount="<%# Eval("discount") %>"></a>
+                                                                                    <a class="count" contenteditable="true"><%#Eval("quantity") %></a>
+                                                                                    <a class="caddButton  enabled" data-img="<%#Eval("image") %>" data-size="<%# Eval("size") %>" data-id="<%# Eval("id") %>" data-price="<%#Eval("newprice") %>" data-discount="<%# Eval("discount") %>"></a>
+                                                                                </td>
+                                                                                <td class="rightAlign">₹ <%#Convert.ToInt32(Eval("newprice"))*Convert.ToInt32(Eval("quantity")) %></td>
+                                                                                <td><% %></td>
+                                                                            </tr>
+                                                                        </ItemTemplate>
+                                                                    </asp:Repeater>
+
+
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row fourth fixed-right-top" data-no-scroll="">
+                                                <h3 class="">Transaction Snapshot</h3>
+                                                <div id="test5">
+                                                    <div id="test6">
+
+
+                                                        <div class="zoppySnapshot">
+                                                            <h4>Items in Order:  <small data-items1="" class="fright">
+                                                                <asp:Label ID="lblTotalItems" runat="server"></asp:Label>
+                                                            </small></h4>
+                                                            <h4 class="hidden">Total Discount: <small data-total-discount1="" class="fright">
+                                                                <asp:Label ID="lblTotalDiscount" runat="server"></asp:Label></small></h4>
+                                                            <h4>Total Amount: <small data-amount1="" class="fright">₹ 
+                                                    <asp:Label ID="lblTotalAmount" runat="server"></asp:Label></small></h4>
+                                                            <p><small>Order is not placed yet</small></p>
+                                                            <a href="#" class="btnCheckOut">
+                                                                <img src="images/checkout.png" class="checkoutButton fright" />
+                                                            </a>
+                                                            <div class="clearFix"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearFix"></div>
+                                    </div>
+
+                                    <!-- Review wrapper ends -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Responsive cart ends -->
+                    <div id="valueProps">
+                        <%--  <div style="background-color:rgba(220, 220, 220, 0.22);box-shadow: 4px 4px 2px #888888;border:2px solid;" class="footer">
+                            <div class="fiveColumnList">
+                        <ul>
+                <li><strong>About Urban</strong></li>
+                                <li><a href="AboutUs.aspx">About Urban</a></li>
+                             <li><a href="ContactUs.aspx">Contact Us</a></li>
+                                <li><a href="goodies.aspx">Urban Goodies</a></li>
+                                
+                            </ul>
+                       
+                        <ul>
+                <li><strong>Terms &amp; Conditions</strong></li>
+                                <li><a href="Termsandcondition.aspx">Terms &amp; Conditions</a></li>                                
+                            </ul>
+                      
+                        <ul>
+                <li><strong>FAQ & Delivery</strong></li>
+                                <li><a href="FAQ.aspx">FAQ</a></li>  
+                            <li><strong>Delivery</strong></li>
+                                <li><a href="delivery_detail.aspx">Delivery Details</a></li>                              
+                            </ul>
+                      <ul>
+                <li>
+                        
+                                <div style="width:100%; max-width:960px; margin:0 auto; padding:0 20px 50px 20px; box-sizing:border-box;">
+	                                <div class="breakingNews bn-bordernone bn-green" id="bn1">
+                                        <strong>Review</strong>
+    	                                <ul style="left: 269px;">
+                                            <asp:Repeater ID="rpReview" runat="server">
+                                                <ItemTemplate>
+                                                   <a href="SiteReview.aspx" target="_blank"> 
+                                                     <li style="display: block; width: 100%;">
+		                                        <p>
+                                                    <strong><%#Eval("F_name") %></strong> - <%#Eval("review") %>
+		                                        </p>
+		                                    </li>
+                                                       </a>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+		                                   
+                                            
+    	                                </ul>
+                                        <div class="bn-navi">
+        	                                <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $(window).load(function (e) {                                       
+                                        $("#bn1").breakingNews({
+                                            effect: "slide-h",
+                                            autoplay: true,
+                                            timer: 3000,
+                                            color: "green"
+                                        });
+                                    });
+                                </script>
+                          </li>    
+                          <li> <img style="width:90px;height:18px" src="img/logo.png" /></li>                          
+                            </ul>
+                            </div>
+               <p>© UrbanBanya Pvt. Ltd. 2015 | <a href="Termsandcondition.aspx" rel="nofollow">Terms &amp; Conditions</a> | <a href="FAQ.aspx" rel="nofollow">FAQ</a></p>
+    </div>--%>
+                        <div style="text-align:left;padding-left:25px;border:2px solid #92E688">
+                            <div id="footer" class="sixteen columns">
+
+
+
+                                <div id="static-footer-bottom">
+                                    <div class="myfootercol">
+                                        <h3>About Urban</h3>
+
+                                        <ul style="margin-left:25px">
+                                            <li style="padding: 3px;"><a href="AboutUs.aspx">About Urban</a></li>
+                                            <li style="padding: 3px;"><a  href="ContactUs.aspx">Contact Us</a></li>
+                                            <li style="padding: 3px;"><a  href="goodies.aspx">Urban Goodies</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="myfootercol">
+                                        <h3>Terms &amp; Conditions</h3>
+
+                                        <ul style="margin-left:25px">
+                                           <li style="padding: 3px;"><a href="Termsandcondition.aspx">Terms &amp; Conditions</a></li>    
+                                        </ul>
+                                    </div>
+                                    <div class="myfootercol">
+                                        <h3>FAQ & Delivery</h3>
+
+                                        <ul style="margin-left:25px">
+                                            <li style="padding: 3px;"><a href="FAQ.aspx">FAQ</a></li>  
+                           
+                                <li style="padding: 3px;"><a href="delivery_detail.aspx">Delivery Details</a></li>   
+                                        </ul>
+                                    </div>
+                                    <div class="myfootercol">
+                                        <h3>GET SOCIAL</h3>
+
+                                        <ul style="margin-left:25px">
+                                            <li style="padding: 3px;"><a href="#">
+                                                <img alt="Facebook" src="http://pinkcitykirana.com/image/data/icons/f1.png" style="width: 25px; height: 25px;margin:2px" title="Facebook"><div style="margin-top: -19px;margin-left: 27px;">&nbsp;&nbsp;Find Us on Facebook</div></a></li>
+                                            <li style="padding: 3px;"><a href="#">
+                                                <img alt="Google+" src="http://pinkcitykirana.com/image/data/icons/g1.png" style="width: 25px; height: 25px;margin:2px" title="Google +"><div style="margin-top: -19px;margin-left: 27px;">&nbsp;&nbsp;Follow Us on Google +</div></a></li>
+                                            <li style="padding: 3px;"><a href="#">
+                                                <img alt="Twitter" src="http://pinkcitykirana.com/image/data/icons/t1.png" style="width: 25px; height: 25px;margin:2px" title="Twitter"><div style="margin-top: -19px;margin-left: 27px;">&nbsp;&nbsp;Follow Us on Twitter</div></a></li>
+                                            <li style="padding: 3px;"><a href="#">
+                                                <img alt="Pinterest" src="http://pinkcitykirana.com/image/data/icons/p1.png" style="width: 25px; height: 25px;margin:2px" title="Pinterest"><div style="margin-top: -19px;margin-left: 27px;">&nbsp;&nbsp;Find Us on Pinterest</div></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="myfootercol">
+                                        <h3>Reviewes</h3>
+                                        <div style="width: 100%; max-width: 960px; margin: 0 auto; padding: 0 20px 50px 20px; box-sizing: border-box;">
+                                            <div class="breakingNews bn-bordernone bn-green" id="bn1">
+                                               
+                                                <ul style="left: 269px;">
+                                                    <asp:Repeater ID="rpReview" runat="server">
+                                                        <ItemTemplate>
+                                                            <a href="SiteReview.aspx" target="_blank">
+                                                                <li style="display: block; width: 100%;">
+                                                                    <p>
+                                                                        <img style="height:25px;width:25px;margin-top:2px" src="img/User_Circle.png" /><div style="margin-top: -27px;margin-left: 40px;"><strong><%#Eval("F_name") %></strong></div>
+                                                                    </p>
+                                                                    <p>
+                                                                        <%#Eval("review") %>
+                                                                    </p>
+                                                                </li>
+                                                            </a>
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
+
+
+                                                </ul>
+                                                <div class="bn-navi">
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $(window).load(function (e) {
+                                                $("#bn1").breakingNews({
+                                                    effect: "slide-h",
+                                                    autoplay: true,
+                                                    timer: 3000,
+                                                    color: "green"
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="footer-Category">&nbsp;</div>
+
+                                    <div id="powered">
+                                        <p>Copyright © 2016&nbsp;All Rights Reserved&nbsp;By <a href="http://www.urbanbanya.com">Urban Banya</a>. <img style="height:70px;width:250px" src="img/payment.png" />&nbsp;</p>
+                                        <p>Designed &amp; Developed by <a href="http://par-ken.com" rel="nofollow">Parken Solution</a></p>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <%--  <div class="footer">
+                             
+                            <p>© UrbanBanya Pvt. Ltd. 2015 | <a href="/pages/terms-conditions" rel="nofollow">Terms &amp; Conditions</a> | <a href="/pages/privacy-policy" rel="nofollow">Privacy Policy</a></p>
+                        </div>--%>
+                    </div>
+                    <!-- Value Props Closes -->
+
+                </div>
+                <!-- Kitchen closes -->
+
+            </div>
+            <!-- Content closes -->
+        </div>
+        <!-- Outer Wrap Closes -->
+        <input type="hidden" runat="server" id="hdnsessionid" />
+
+        <img id="myob" style="z-index: 99999999999999; position: absolute" src="img/logo.png" width="50px" height="50px" class="hidden" />
+
+    </form>
+    <%--<script type="text/javascript" src="js/urbanbanya.js"></script>--%>
+
+
+
+    <!-- Resource jQuery -->
+
+</body>
+</html>

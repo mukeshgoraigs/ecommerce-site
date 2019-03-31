@@ -1,0 +1,223 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMasterPage.master.cs" Inherits="AdminMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+
+    <title>Urban Banya Admin </title>
+    <link href="assets/css/progressbar.css" rel="stylesheet" />
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME ICONS  -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE  -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <link href="assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="assets/js/progressbar.js"></script>
+ <script>
+     $(".mydialog").css("display", "none");
+ </script>
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="navbar navbar-inverse set-radius-zero">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+
+                        <img style="width:150px;height:70px" src="assets/img/logo.png" />
+                    </a>
+
+                </div>
+
+                <div class="left-div">
+                    <div class="user-settings-wrapper">
+                        <ul class="nav">
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-settings">
+                                    <div class="media">
+                                        <a class="media-left" href="#">
+                                            
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Urban Banya</h4>
+                                            <h5>Online Shopping</h5>
+
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <h5><strong>Jaipur</strong></h5>
+                                   
+                                <hr />
+                                    <a href="LogoutAdmin.aspx" class="btn btn-danger btn-sm">Logout</a>
+
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- LOGO HEADER END-->
+        <section class="menu-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-collapse collapse ">
+                            <ul id="menu-top" class="nav navbar-nav navbar-right">
+                                <li><a class="menu-top-active" href="Home.aspx">Dashboard</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">Sales<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="Orders.aspx">Order</a></li>
+                                        <li><a href="Invoice.aspx">Invoices</a></li>
+                                        <li><a href="Shipment.aspx">Shipment</a></li>
+                                        <li><a href="#">Credit Memo</a></li>
+                                    </ul>
+                                </li>
+                                 <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">Catalog<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="Category.aspx">Manage Category</a></li>
+                                        <li><a href="Sub-Category.aspx">Manage Sub-Category</a></li>
+                                        <li><a href="Product.aspx">Manage Product</a></li>
+                                       <li><a href="Area.aspx">Manage Area</a></li>
+                                        <li><a href="SlotMaster.aspx">Manage Slot</a></li>
+                                         <li><a href="GoodiesRules.aspx">Manage Goodies Rules</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">Customers<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="Customer.aspx">Manage Customer</a></li>                                     
+                                       
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">Promotions<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Automated Mail Reminder</a></li>
+                                         <li><a href="DiscountCoupons.aspx">Coupons Manager</a></li>                                        
+                                       
+                                    </ul>
+                                </li>
+                                 <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">CMS<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="Slider.aspx">Banners</a></li>     
+                                        <li><a href="Section.aspx">Home Page Section</a></li>      
+                                        <li><a href="NewOffer.aspx">Home Page Offer</a></li>                                  
+                                        <li><a href="#">Contact Page</a></li>  
+                                    </ul>
+                                </li>
+                                  <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">Reports<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="SalesReport.aspx">Sales</a></li>   
+                                        <li><a href="#">Product</a></li>    
+                                        <li><a href="CartReport.aspx">Shopping Cart</a></li>        
+                                        <li><a href="TopCustomer.aspx">Top Customer</a></li>                          
+                                        <li><a href="CustomerReport.aspx">Customer</a></li>  
+                                          
+                                         <li><a href="TaxReport.aspx">Tax</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle js-activated">Reviews<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="Reviews.aspx">Reviews</a></li>   
+                                        
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- MENU SECTION END-->
+        <div>
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        &copy; 2015 UrbanBanya | By : <a href="http://www.par-ken.com/" target="_blank">Parken Solution Pvt. Ltd</a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER SECTION END-->
+      
+         <div class="mydialog">
+          <div class="loading" align="center">
+    Loading. Please wait.<br />
+    <br />
+            <img src="assets/img/loader.gif" /><br />
+             
+   
+</div>
+  
+   
+
+    </div>
+    </form>
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+    
+  
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap-hover-dropdown.js"></script>
+     <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        // very simple to use!
+        $(document).ready(function () {
+            $('.js-activated').dropdownHover().dropdown();
+            
+            $('#example').DataTable();
+        });
+  </script>
+</body>
+</html>
